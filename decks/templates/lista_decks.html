@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="deck-list">
+  {% for deck in decks %}
+  <a href="{% url 'detalle_deck' deck.id %}" class="deck-item">
+    <h3>{{ deck.nombre }}</h3>
+    <p>{{ deck.descripcion }}</p>
+    <img src="{{ deck.imagen.url }}" alt="{{ deck.nombre }}">
+  </a>
+  {% endfor %}
+</div>
+{% endblock %}

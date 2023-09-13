@@ -1,0 +1,137 @@
+/* Estilos para hacer el fondo más oscuro */
+body {
+  background-color: #010113; /* Color de fondo oscuro (azul oscuro más intenso) */
+  color: #fff; /* Color del texto claro */
+}
+
+/* Estilo para la barra de navegación */
+.navbar {
+  background: linear-gradient(to right, #000, #000033); /* Fondo con degradado azul oscuro */
+  color: #fff; /* Color del texto en la barra (blanco) */
+  padding: 10px 0; /* Espaciado interior de la barra */
+  text-align: center; /* Alineación del contenido */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Sombra ligera */
+  position: relative; /* Agregar posición relativa */
+  z-index: 999; /* Establecer una alta propiedad z-index */
+}
+
+/* Estilos para el enlace del logo */
+.logo {
+  text-decoration: none; /* Elimina la subraya del enlace */
+  font-size: 24px; /* Tamaño del texto del logo */
+  font-weight: bold; /* Peso de la fuente */
+  color: #fff; /* Color del texto del logo (blanco) */
+}
+
+.logo:hover {
+  color: #0074b8; /* Cambio de color al pasar el cursor sobre el logo (azul) */
+}
+
+/* Estilos para el botón "Decks" en la barra de navegación */
+.navbar .navbar-toggler {
+  background-color: #000; /* Color de fondo del botón (negro) */
+  border: none; /* Sin bordes */
+  border-radius: 20px; /* Bordes redondeados */
+  color: #fff; /* Color del texto del botón (blanco) */
+  padding: 10px 20px; /* Espaciado interior del botón */
+  font-weight: bold; /* Peso de la fuente */
+  text-decoration: none; /* Elimina la decoración de texto */
+  transition: background-color 0.3s ease; /* Transición de color de fondo */
+}
+
+.navbar .navbar-toggler:hover {
+  background-color: #333; /* Cambio de color al pasar el cursor sobre el botón (negro más oscuro) */
+}
+
+/* Estilos para la página detalle_deck.html */
+.deck-details {
+  text-align: center;
+  padding: 20px;
+  border: 1px solid #333;
+  background-color: rgba(0, 0, 0, 0.7);
+  margin-bottom: 20px;
+}
+
+.deck-details h3 {
+  font-size: 24px;
+  margin-top: 0;
+  color: #fff;
+}
+
+.deck-details p {
+  font-size: 16px;
+  color: #ddd;
+}
+
+.deck-details img {
+  max-width: 100%;
+  height: auto;
+}
+
+/* Estilo para la página lista_decks.html */
+.deck-list {
+  width: 100%; /* Ocupa todo el ancho disponible */
+}
+
+.deck-item {
+  margin-bottom: 20px; /* Espaciado inferior entre elementos */
+  padding: 10px;
+  background-color: rgba(0, 0, 0, 0.7);
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+}
+
+.deck-item h3 {
+  font-size: 18px;
+  margin-top: 0;
+  color: #fff;
+}
+
+.deck-item p {
+  font-size: 14px;
+  color: #ddd;
+}
+
+.deck-item img {
+  max-width: 100%;
+  height: auto;
+}
+
+/* Estilos personalizados para el botón "Decks" en la barra de navegación */
+.navbar .navbar-toggler .btn-decks {
+  background-color: #000000; /* Color de fondo del botón (negro) */
+  color: #fff; /* Color del texto del botón (blanco) */
+  border: none; /* Sin bordes */
+  border-radius: 20px; /* Bordes redondeados */
+  font-weight: bold; /* Peso de la fuente */
+  text-decoration: none; /* Elimina la decoración de texto */
+  padding: 10px 20px; /* Espaciado interior del botón */
+  transition: background-color 0.3s ease; /* Transición de color de fondo */
+}
+
+.navbar .navbar-toggler .btn-decks:hover {
+  background-color: #333; /* Cambio de color al pasar el cursor sobre el botón (negro más oscuro) */
+}
+
+
+
+
+/* Estilos para el botón "Decks" en la barra de navegación */
+.navbar .btn-decks {
+  background-color: #000; /* Color de fondo del botón (negro) */
+  color: #fff; /* Color del texto del botón (blanco) */
+  border: none; /* Sin bordes */
+  padding: 10px 20px; /* Espaciado interior del botón */
+  border-radius: 20px; /* Bordes redondeados */
+  font-weight: bold; /* Peso de la fuente */
+  text-decoration: none; /* Elimina la decoración de texto */
+  transition: background-color 0.3s ease; /* Transición de color de fondo */
+}
+
+.navbar .btn-decks:hover {
+  background-color: #333; /* Cambio de color al pasar el cursor sobre el botón (negro más oscuro) */
+}
+
+
+
+
+

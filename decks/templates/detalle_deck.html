@@ -1,0 +1,9 @@
+{% extends 'base.html' %}
+
+{% block content %}
+  <div class="deck-details">
+    <h2>{{ deck.nombre }}</h2>
+    <p>{{ deck.descripcion }}</p>
+    <img src="{{ deck.imagen.url }}" alt="{{ deck.nombre }}" class="deck-image">
+  </div>
+{% endblock %}
