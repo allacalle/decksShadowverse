@@ -5,5 +5,10 @@
     <h2>{{ deck.nombre }}</h2>
     <p>{{ deck.descripcion }}</p>
     <img src="{{ deck.imagen.url }}" alt="{{ deck.nombre }}" class="deck-image">
+        <!-- Botón de descarga estilizado con emoticono de disquete -->
+        <a href="{{ deck.imagen.url }}" download="{{ deck.nombre }}.jpg" class="download-btn">
+          <span class="emoji">&#128190;</span> Descargar Imagen
+        </a>
+      </a>
   </div>
 {% endblock %}

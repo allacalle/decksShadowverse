@@ -132,6 +132,15 @@ body {
 }
 
 
+/* Estilo para el contenedor de cada publicación */
+.deck-wrapper {
+  border: 2px solid #ffc107; /* Borde amarillo */
+  padding: 10px;
+  margin-bottom: 20px;
+}
+
+/* Resto de estilos previos para el botón de descarga y emoticono de disquete */
+/* ... */
 
 
 
