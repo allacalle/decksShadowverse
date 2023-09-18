@@ -20,6 +20,14 @@
             </button>
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav ml-auto">
+                    <!-- Enlace para la página de creación de mazos solo para usuarios autenticados -->
+                    {% if user.is_authenticated %}
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'crear_deck' %}">
+                            <button class="btn btn-custom btn-decks">Crear Deck</button>
+                        </a>
+                    </li>
+                    {% endif %}
                     <!-- Puedes agregar más elementos de navegación aquí -->
                 </ul>
             </div>

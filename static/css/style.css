@@ -139,8 +139,64 @@ body {
   margin-bottom: 20px;
 }
 
-/* Resto de estilos previos para el botón de descarga y emoticono de disquete */
-/* ... */
+/* Agrega estos estilos a tu archivo style.css */
+.custom-form {
+  background-color: rgba(0, 0, 0, 0.7); /* Fondo oscuro */
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
+}
+
+.custom-form h2 {
+  color: #fff; /* Color del título */
+  font-size: 28px;
+  text-align: center;
+}
+
+.custom-form button[type="submit"] {
+  background-color: #007bff; /* Color de fondo del botón (azul) */
+  color: #fff; /* Color del texto del botón (blanco) */
+  border: none; /* Sin bordes */
+  padding: 10px 20px; /* Espaciado interior del botón */
+  border-radius: 20px; /* Bordes redondeados */
+  font-weight: bold; /* Peso de la fuente */
+  text-decoration: none; /* Elimina la decoración de texto */
+  transition: background-color 0.3s ease; /* Transición de color de fondo */
+}
+
+.custom-form button[type="submit"]:hover {
+  background-color: #0056b3; /* Cambio de color al pasar el cursor sobre el botón (azul más oscuro) */
+}
 
 
+/* Estilo para el formulario personalizado */
+.custom-form-border {
+  border: 2px solid #ffdb58; /* Borde amarillo */
+  border-radius: 10px; /* Bordes redondeados */
+  padding: 20px; /* Espaciado interior del formulario */
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5); /* Sombra */
+}
 
+.custom-form label {
+  font-weight: bold; /* Texto de etiqueta en negrita */
+  margin-bottom: 10px; /* Espaciado inferior entre etiquetas y campos */
+}
+
+.custom-form input[type="text"],
+.custom-form textarea,
+.custom-form .btn-custom {
+  width: 100%; /* Ancho completo para campos de texto y botón */
+  padding: 10px; /* Espaciado interior de campos de texto y botón */
+  font-size: 16px; /* Tamaño de texto aumentado */
+  margin-bottom: 20px; /* Espaciado inferior entre campos de formulario */
+}
+
+.custom-form .btn-custom {
+  background-color: #ffdb58; /* Fondo amarillo para el botón */
+  color: #000; /* Texto negro para el botón */
+  border: none; /* Sin bordes */
+}
+
+.custom-form .btn-custom:hover {
+  background-color: #ffcc00; /* Cambio de color al pasar el cursor sobre el botón */
+}
