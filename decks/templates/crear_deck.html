@@ -23,8 +23,15 @@
           {% endif %}
           
           <div class="form-group">
-            <label for="{{ form.clase_deck.id_for_label }}">Clase del Mazo:</label>
-            {{ form.clase_deck }}
+            <label>Clase del Mazo:</label>
+            <div class="shadowverse-class-radio">
+              {% for radio in form.clase_deck %}
+                <label class="btn btn-primary" style="margin-right: 10px;">
+                  {{ radio }}
+                  {{ radio.choice_label.name_class }}
+                </label>
+              {% endfor %}
+            </div>
           </div>
           <div class="form-group">
             <label for="{{ form.nombre.id_for_label }}">Nombre:</label>
