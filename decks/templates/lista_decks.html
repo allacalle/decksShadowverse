@@ -9,6 +9,7 @@
       <p>{{ deck.descripcion }}</p>
       <img src="{{ deck.imagen.url }}" alt="{{ deck.nombre }}">
       <p class="publication-date">Fecha de Publicación: {{ deck.fecha_publicacion }}</p>
+      <p> {{deck.clase_deck}} </p>
       
       <!-- Botón de descarga estilizado con emoticono de disquete -->
       <a href="{{ deck.imagen.url }}" download="{{ deck.nombre }}.jpg" class="download-btn">

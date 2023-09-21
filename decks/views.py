@@ -20,14 +20,13 @@ def crear_deck(request):
     if request.method == 'POST':
         form = DeckForm(request.POST, request.FILES)
         if form.is_valid():
-            # Guarda el mazo en la base de datos
             mazo = form.save(commit=False)
-            mazo.usuario = request.user  # Asigna el usuario actual como propietario del mazo
+            mazo.usuario = request.user
             mazo.save()
-            return redirect('lista_decks')  # Redirige a la lista de mazos
+            return redirect('lista_decks')  # Redirige a la lista de mazos después de guardar
     else:
         form = DeckForm()
-    
+
     return render(request, 'crear_deck.html', {'form': form})
 
 class ListaDecksView(ListView):
