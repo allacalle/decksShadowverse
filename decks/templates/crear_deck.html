@@ -8,6 +8,20 @@
       <div class="custom-form-border">
         <form method="post" enctype="multipart/form-data" class="custom-form">
           {% csrf_token %}
+          
+          {% if form.errors %}
+          <div class="alert alert-danger">
+            <strong>Error:</strong>
+            <ul>
+              {% for field, error_list in form.errors.items %}
+              {% for error in error_list %}
+              <li>{{ field }}: {{ error }}</li>
+              {% endfor %}
+              {% endfor %}
+            </ul>
+          </div>
+          {% endif %}
+          
           <div class="form-group">
             <label for="{{ form.clase_deck.id_for_label }}">Clase del Mazo:</label>
             {{ form.clase_deck }}

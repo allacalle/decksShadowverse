@@ -23,7 +23,10 @@ def crear_deck(request):
             mazo = form.save(commit=False)
             mazo.usuario = request.user
             mazo.save()
+            print("Mazo guardado con exito")
             return redirect('lista_decks')  # Redirige a la lista de mazos después de guardar
+        else:
+            print(form.errors)
     else:
         form = DeckForm()
 
