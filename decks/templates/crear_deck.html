@@ -24,17 +24,16 @@
           
           <div class="form-group">
             <label>Clase del Mazo:</label>
-            <div class="btn-group" data-toggle="buttons">
-              {% for choice_value, choice_label in form.clase_deck.field.choices %}
-                <label class="btn btn-class {% if form.clase_deck.value == choice_value %}active{% endif %}">
-                  <input type="radio" name="{{ form.clase_deck.name }}" value="{{ choice_value }}" id="{{ choice_value }}"{% if form.clase_deck.value == choice_value %} checked{% endif %}>
-                  <span class="hide-text">{{ choice_label }}</span> <!-- Agregamos la clase para ocultar el texto -->
-                  <img src="/media/class_icons/{{ choice_value }}.png" alt="{{ choice_label }}">
-                </label>
-              {% endfor %}
-            </div>
+<div class="btn-group" data-toggle="buttons">
+  {% for radio in form.clase_deck %}
+    <label class="btn btn-class {% if radio.id_for_label == 'forestcraft' %}active{% endif %}">
+      {{ radio }}
+      <img src="/media/class_icons/{{ radio.id_for_label }}.png" alt="{{ radio.choice_label.name_class }}">
+    </label>
+  {% endfor %}
+</div>
+
           </div>
-          
           <div class="form-group">
             <label for="{{ form.nombre.id_for_label }}">Nombre:</label>
             {{ form.nombre }}
