@@ -221,3 +221,22 @@ body {
   max-height: 30px;
   margin-right: 5px;
 }
+
+/* #Iconos del formulario crear_deck*/
+.btn-icon {
+  width: 100%;
+  padding: 0; /* Elimina cualquier relleno interno */
+  text-align: center; /* Centra el contenido horizontalmente */
+  white-space: nowrap; /* Evita el salto de línea del texto */
+  overflow: hidden; /* Oculta cualquier texto que desborde el botón */
+  text-overflow: ellipsis; /* Agrega puntos suspensivos si el texto desborda */
+}
+
+.btn-icon img {
+  max-width: 100%; /* Asegura que el icono se ajuste al ancho del botón */
+}
+
+/* Agrega este estilo en tu archivo CSS o en el bloque de estilos dentro de tu HTML */
+.hide-text {
+  display: none; /* Esto oculta el texto */
+}
