@@ -1,10 +1,10 @@
+# forms.py
 from django import forms
 from .models import Deck, ShadowverseClass
 
 class DeckForm(forms.ModelForm):
-    clase_deck = forms.ModelChoiceField(
-        queryset=ShadowverseClass.objects.all(),
-        empty_label='Seleccionar una clase',
+    clase_deck = forms.ChoiceField(
+        choices=[(clase.name_class, clase.name_class) for clase in ShadowverseClass.objects.all()],
         widget=forms.RadioSelect,
         label='Clase del Mazo'
     )

@@ -200,3 +200,24 @@ body {
 .custom-form .btn-custom:hover {
   background-color: #ffcc00; /* Cambio de color al pasar el cursor sobre el botón */
 }
+
+
+/* Estilos personalizados para los botones de clase */
+.btn-class {
+  background-color: #fff;
+  border: 2px solid #ccc;
+  padding: 5px 15px;
+  margin-right: 5px;
+}
+
+.btn-class.active {
+  background-color: #4783B0;
+  color: #fff;
+  border: 2px solid #4783B0;
+}
+
+.btn-class img {
+  max-width: 30px;
+  max-height: 30px;
+  margin-right: 5px;
+}
