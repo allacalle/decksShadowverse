@@ -4,10 +4,8 @@ from .models import Deck, ShadowverseClass
 class DeckForm(forms.ModelForm):
     clase_deck = forms.ModelChoiceField(
         queryset=ShadowverseClass.objects.all(),
-        empty_label='Seleccionar una clase',
-        widget=forms.RadioSelect,
-        label='Clase del Mazo',
-        to_field_name='name_class'  # Utilizar el nombre de la clase como valor
+        empty_label=None,  # No permitir una opción vacía
+        widget=forms.HiddenInput(),
     )
 
     class Meta:

@@ -11,7 +11,6 @@
           
           {% if form.errors %}
           <div class="alert alert-danger">
-            <strong>Error:</strong>
             <ul>
               {% for field, error_list in form.errors.items %}
               {% for error in error_list %}
@@ -24,15 +23,12 @@
           
           <div class="form-group">
             <label>Clase del Mazo:</label>
-<div class="btn-group" data-toggle="buttons">
-  {% for radio in form.clase_deck %}
-    <label class="btn btn-class {% if radio.id_for_label == 'forestcraft' %}active{% endif %}">
-      {{ radio }}
-      <img src="/media/class_icons/{{ radio.id_for_label }}.png" alt="{{ radio.choice_label.name_class }}">
-    </label>
-  {% endfor %}
-</div>
-
+            <div class="class-buttons">
+              {% for class_choice in form.clase_deck.field.choices %}
+                <button type="button" class="btn btn-class{% if class_choice.0 == form.clase_deck.value %} selected{% endif %}" data-class="{{ class_choice.0 }}">{{ class_choice.1 }}</button>
+              {% endfor %}
+            </div>
+            <input type="hidden" name="clase_deck" id="clase_deck" value="{{ form.clase_deck.value }}">
           </div>
           <div class="form-group">
             <label for="{{ form.nombre.id_for_label }}">Nombre:</label>
@@ -52,4 +48,45 @@
     </div>
   </div>
 </div>
+
+<style>
+  /* Estilo para botones seleccionados */
+  .btn-class.selected {
+    border: 2px solid yellow; /* Cambia el borde a amarillo cuando se selecciona */
+    /* Puedes personalizar más los estilos según tus preferencias */
+  }
+
+  /* Estilo para los botones */
+  .btn-class {
+    /* Agrega estilos generales para los botones aquí */
+    /* Por ejemplo, puedes establecer el color de fondo y el color del texto */
+    background-color: #ccc; /* Color de fondo por defecto */
+    color: #000; /* Color del texto por defecto */
+    margin-right: 5px; /* Espacio entre los botones */
+    border: 1px solid #000; /* Borde de los botones */
+    padding: 5px 10px; /* Espaciado interno del botón */
+    cursor: pointer; /* Cambia el cursor al pasar por encima */
+  }
+</style>
+
+<script>
+  // Script para gestionar la selección de clases
+  document.addEventListener('DOMContentLoaded', function() {
+    const classButtons = document.querySelectorAll('.btn-class');
+    const claseDeckField = document.getElementById('clase_deck');
+
+    // Manejar el clic en los botones de clase
+    classButtons.forEach(function(button) {
+      button.addEventListener('click', function() {
+        classButtons.forEach(function(btn) {
+          btn.classList.remove('selected');
+        });
+        this.classList.add('selected');
+        const selectedClass = this.getAttribute('data-class');
+        claseDeckField.value = selectedClass;
+        console.log('Clase seleccionada:', selectedClass);
+      });
+    });
+  });
+</script>
 {% endblock %}

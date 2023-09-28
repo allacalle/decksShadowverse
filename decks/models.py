@@ -42,6 +42,8 @@ class Deck(models.Model):
     clase_deck = models.ForeignKey(ShadowverseClass, on_delete=models.SET_NULL, null=True)
 
 
+
+
 class Valoracion(models.Model):
     VALORACIONES_CHOICES = [
         (1, 'Positiva'),
