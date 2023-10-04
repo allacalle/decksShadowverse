@@ -201,38 +201,34 @@ body {
   background-color: #ffcc00; /* Cambio de color al pasar el cursor sobre el botón */
 }
 
-
-/* Estilos personalizados para los botones de clase */
+/* Estilos para los botones */
 .btn-class {
-  background-color: #fff;
-  border: 2px solid #ccc;
-  padding: 5px 15px;
+  background-color: #fff; /* Fondo blanco */
   margin-right: 5px;
+  border: 1px solid #ccc; /* Borde gris */
+  padding: 5px 10px;
+  cursor: pointer;
+  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.2);
 }
 
-.btn-class.active {
-  background-color: #4783B0;
-  color: #fff;
-  border: 2px solid #4783B0;
+
+  /* Estilo para botones seleccionados */
+  .btn-class.selected {
+    background-color: #3498db;
+  }
+
+  /* Estilo para botones no seleccionados al pasar el cursor sobre ellos */
+  .btn-class:not(.selected):hover {
+    background-color: #ddd;
+  }
+
+  /* Estilo para los botones de clase */
+.class-buttons {
+  display: flex; /* Utiliza un contenedor flexible */
+  justify-content: space-between; /* Distribuye los botones de manera uniforme */
+  margin-top: 10px; /* Margen superior para separar de otros elementos */
 }
 
-.btn-class img {
-  max-width: 30px;
-  max-height: 30px;
-  margin-right: 5px;
-}
 
-/* #Iconos del formulario crear_deck*/
-.btn-icon {
-  width: 100%;
-  padding: 0; /* Elimina cualquier relleno interno */
-  text-align: center; /* Centra el contenido horizontalmente */
-  white-space: nowrap; /* Evita el salto de línea del texto */
-  overflow: hidden; /* Oculta cualquier texto que desborde el botón */
-  text-overflow: ellipsis; /* Agrega puntos suspensivos si el texto desborda */
-}
 
-.btn-icon img {
-  max-width: 100%; /* Asegura que el icono se ajuste al ancho del botón */
-}
 

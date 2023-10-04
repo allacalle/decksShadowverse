@@ -22,14 +22,16 @@
           {% endif %}
           
           <div class="form-group">
-            <label>Clase del Mazo:</label>
             <div class="class-buttons">
-              {% for class_choice in form.clase_deck.field.choices %}
-                <button type="button" class="btn btn-class{% if class_choice.0 == form.clase_deck.value %} selected{% endif %}" data-class="{{ class_choice.0 }}">{{ class_choice.1 }}</button>
-              {% endfor %}
+                {% for clase in clases %}
+                <button type="button" class="btn btn-class{% if clase.name_class == form.clase_deck.value %} selected{% endif %}" data-class="{{ clase.name_class }}">
+                    <img src="{{ clase.icon.url }}" alt="{{ clase.name_class }}" />
+                </button>
+                {% endfor %}
             </div>
             <input type="hidden" name="clase_deck" id="clase_deck" value="{{ form.clase_deck.value }}">
-          </div>
+            <p></p>
+        </div>        
           <div class="form-group">
             <label for="{{ form.nombre.id_for_label }}">Nombre:</label>
             {{ form.nombre }}
@@ -48,34 +50,78 @@
     </div>
   </div>
 </div>
+<style>
 
 <style>
   /* Estilo para botones seleccionados */
   .btn-class.selected {
-    border: 2px solid yellow; /* Cambia el borde a amarillo cuando se selecciona */
-    /* Puedes personalizar más los estilos según tus preferencias */
+    background-color: #3498db; /* Cambia el color de fondo al seleccionar a un azul claro */
+    border: 2px solid #3498db; /* Borde con el mismo color de fondo */
+    padding: 5px 20px;
+    cursor: pointer;
+    margin-right: 10px;
+    transition: background-color 0.3s, box-shadow 0.3s, transform 0.3s; /* Agrega transiciones suaves */
   }
 
-  /* Estilo para los botones */
-  .btn-class {
-    /* Agrega estilos generales para los botones aquí */
-    /* Por ejemplo, puedes establecer el color de fondo y el color del texto */
-    background-color: #ccc; /* Color de fondo por defecto */
-    color: #000; /* Color del texto por defecto */
-    margin-right: 5px; /* Espacio entre los botones */
-    border: 1px solid #000; /* Borde de los botones */
-    padding: 5px 10px; /* Espaciado interno del botón */
-    cursor: pointer; /* Cambia el cursor al pasar por encima */
+  .btn-class.selected:active {
+    transform: translateY(2px); /* Cambia ligeramente la posición al hacer clic */
+    box-shadow: none; /* Elimina el sombreado al hacer clic */
   }
+
+<style>
+  /* Estilo para botones seleccionados */
+  .btn-class.selected {
+    background-color: #3498db; /* Cambia el color de fondo al seleccionar a un azul claro */
+    border: 2px solid #3498db; /* Borde con el mismo color de fondo */
+    padding: 5px 20px;
+    cursor: pointer;
+    margin-right: 10px;
+    transition: background-color 0.3s, transform 0.3s; /* Agrega transiciones suaves para el color de fondo y el efecto de botón pulsado */
+  }
+
+  .btn-class.selected:active {
+    transform: translateY(2px); /* Cambia ligeramente la posición al hacer clic para el efecto de botón pulsado */
+  }
+
+<style>
+
+/* Estilos para los botones */
+.btn-class {
+  background-color: #fff; /* Fondo blanco */
+  margin-right: 5px;
+  border: 1px solid #ccc; /* Borde gris */
+  padding: 5px 10px;
+  cursor: pointer;
+  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+
+  /* Estilo para botones seleccionados */
+  .btn-class.selected {
+    background-color: #3498db;
+  }
+
+  /* Estilo para botones no seleccionados al pasar el cursor sobre ellos */
+  .btn-class:not(.selected):hover {
+    background-color: #ddd;
+  }
+
+  /* Estilo para los botones de clase */
+.class-buttons {
+  display: flex; /* Utiliza un contenedor flexible */
+  justify-content: space-between; /* Distribuye los botones de manera uniforme */
+  margin-top: 10px; /* Margen superior para separar de otros elementos */
+}
+
+
 </style>
 
+
 <script>
-  // Script para gestionar la selección de clases
   document.addEventListener('DOMContentLoaded', function() {
     const classButtons = document.querySelectorAll('.btn-class');
     const claseDeckField = document.getElementById('clase_deck');
 
-    // Manejar el clic en los botones de clase
     classButtons.forEach(function(button) {
       button.addEventListener('click', function() {
         classButtons.forEach(function(btn) {
@@ -84,7 +130,6 @@
         this.classList.add('selected');
         const selectedClass = this.getAttribute('data-class');
         claseDeckField.value = selectedClass;
-        console.log('Clase seleccionada:', selectedClass);
       });
     });
   });

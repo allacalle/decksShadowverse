@@ -17,7 +17,6 @@ def detalle_deck(request, deck_id):
     return render(request, 'detalle_deck.html', {'deck': deck})
 
 
-
 @login_required
 def crear_deck(request):
     if request.method == 'POST':
@@ -27,27 +26,28 @@ def crear_deck(request):
             mazo = form.save(commit=False)
             mazo.usuario = request.user
 
-            # Obtener el nombre de la clase seleccionada desde el formulario
-            selected_class_name = form.cleaned_data['clase_deck']
+            # Obtén la opción seleccionada desde el formulario
+            selected_class_name = request.POST.get('clase_deck')
 
-            try:
-                # Buscar la instancia de ShadowverseClass correspondiente al nombre seleccionado
-                selected_class_instance = ShadowverseClass.objects.get(name_class=selected_class_name)
+            # Obtén la instancia de ShadowverseClass
+            selected_class = ShadowverseClass.objects.get(name_class=selected_class_name)
 
-                # Asignar la instancia al campo clase_deck
-                mazo.clase_deck = selected_class_instance
+            # Asigna la instancia de ShadowverseClass directamente al campo clase_deck
+            mazo.clase_deck = selected_class
 
-                mazo.save()
-                print("Mazo guardado con éxito")
-                return redirect('lista_decks')  # Redirige a la lista de mazos después de guardar
-            except ShadowverseClass.DoesNotExist:
-                print("No se encontró una instancia de clase para el nombre seleccionado:", selected_class_name)
+            mazo.save()
+            print("Mazo guardado con éxito")
+            return redirect('lista_decks')  # Redirige a la lista de mazos después de guardar
         else:
             print(form.errors)
     else:
         form = DeckForm()
 
-    return render(request, 'crear_deck.html', {'form': form})
+    # Obtén todas las instancias de ShadowverseClass
+    clases = ShadowverseClass.objects.all()
+
+    return render(request, 'crear_deck.html', {'form': form, 'clases': clases})
+
 
 
 
