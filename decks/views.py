@@ -8,9 +8,15 @@ from django.views.generic import ListView
 def pagina_inicio(request):
     return render(request, 'inicio.html')
 
+
 def lista_decks(request):
     decks = Deck.objects.all()
-    return render(request, 'lista_decks.html', {'decks': decks})
+    clases = ShadowverseClass.objects.all()
+    print(clases)  # Agrega esta línea para verificar si las clases se están pasando correctamente
+    return render(request, 'lista_decks.html', {'decks': decks, 'clases': clases})
+
+
+
 
 def detalle_deck(request, deck_id):
     deck = get_object_or_404(Deck, pk=deck_id)
@@ -47,7 +53,6 @@ def crear_deck(request):
     clases = ShadowverseClass.objects.all()
 
     return render(request, 'crear_deck.html', {'form': form, 'clases': clases})
-
 
 
 

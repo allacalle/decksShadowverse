@@ -1,3 +1,7 @@
+.hidden {
+  display: none;
+}
+
 /* Estilos para hacer el fondo más oscuro */
 body {
   background-color: #010113; /* Color de fondo oscuro (azul oscuro más intenso) */
@@ -228,7 +232,5 @@ body {
   justify-content: space-between; /* Distribuye los botones de manera uniforme */
   margin-top: 10px; /* Margen superior para separar de otros elementos */
 }
-
-
 
 

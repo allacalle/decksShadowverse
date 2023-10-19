@@ -1,15 +1,23 @@
 {% extends 'base.html' %}
 
 {% block content %}
-<div class="deck-list">
-  {% for deck in decks %}
-  <div class="deck-wrapper">
+<div class="class-buttons">
+  <button type="button" class="btn-class-lista-decks" data-class="Todas">Todas</button>
+  {% for clase in clases %}
+    <button type="button" class="btn-class-lista-decks" data-class="{{ clase.name_class }}">
+      <img src="{{ clase.icon.url }}" alt="{{ clase.name_class }}" />
+    </button>
+  {% endfor %}
+</div>
+
+{% for deck in decks %}
+  <div class="deck-wrapper" data-clase="{{ deck.clase_deck }}">
     <a href="{% url 'detalle_deck' deck.id %}" class="deck-item">
       <h3>{{ deck.nombre }}</h3>
       <p>{{ deck.descripcion }}</p>
       <img src="{{ deck.imagen.url }}" alt="{{ deck.nombre }}">
       <p class="publication-date">Fecha de Publicación: {{ deck.fecha_publicacion }}</p>
-      <p> {{deck.clase_deck}} </p>
+      <p>{{ deck.clase_deck }}</p>
       
       <!-- Botón de descarga estilizado con emoticono de disquete -->
       <a href="{{ deck.imagen.url }}" download="{{ deck.nombre }}.jpg" class="download-btn">
@@ -17,6 +25,62 @@
       </a>
     </a>
   </div>
-  {% endfor %}
+{% endfor %}
 </div>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  const classButtons = document.querySelectorAll('.btn-class-lista-decks');
+  const decks = document.querySelectorAll('.deck-wrapper');
+
+  classButtons.forEach(function(button) {
+    button.addEventListener('click', function() {
+      const selectedClass = this.getAttribute('data-class');
+      if (selectedClass === "Todas") {
+        decks.forEach(function(deck) {
+          deck.style.display = "block";
+        });
+      } else {
+        decks.forEach(function(deck) {
+          const claseMazo = deck.getAttribute('data-clase');
+          if (claseMazo === selectedClass) {
+            deck.style.display = "block";
+          } else {
+            deck.style.display = "none";
+          }
+        });
+      }
+
+      // Desmarca todos los botones
+      classButtons.forEach(function(btn) {
+        btn.classList.remove('selected');
+      });
+      
+      // Marca el botón seleccionado
+      this.classList.add('selected');
+    });
+  });
+});
+</script>
+
+<style>
+  .btn-class-lista-decks {
+    width: 120px; /* Ancho deseado */
+    height: 60px; /* Alto deseado */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background-color: #000; /* Fondo negro */
+    color: #fff; /* Color del texto (blanco) */
+    border: none; /* Sin bordes */
+    border-radius: 10px; /* Bordes redondeados */
+    margin-right: 10px; /* Margen derecho para separar botones */
+    cursor: pointer;
+  }
+
+  .btn-class-lista-decks.selected {
+    border: 2px solid #ffd700; /* Borde dorado para el botón seleccionado */
+  }
+</style>
 {% endblock %}

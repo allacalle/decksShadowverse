@@ -1,12 +1,10 @@
-
 from django.urls import path
 from . import views
 from django.conf import settings
 from django.conf.urls.static import static
 
 urlpatterns = [
-    path('', views.ListaDecksView.as_view(), name='pagina_inicio'),
-    path('decks/', views.ListaDecksView.as_view(), name='lista_decks'),  # Utiliza la vista basada en clase
+    path('', views.lista_decks, name='lista_decks'),  # URL raíz redirige a lista_decks
     path('decks/<int:deck_id>/', views.detalle_deck, name='detalle_deck'),
     path('crear_deck/', views.crear_deck, name='crear_deck'),
     # Otras URL de tu aplicación...
