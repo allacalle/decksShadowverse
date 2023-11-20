@@ -1,5 +1,7 @@
 from django import forms
-from .models import Deck, ShadowverseClass
+from django.contrib.auth.forms import UserCreationForm
+from django.contrib.auth.models import User
+from .models import Deck
 
 class DeckForm(forms.ModelForm):
     class Meta:
@@ -11,4 +13,10 @@ class ClaseDeckForm(forms.ModelForm):
         model = Deck
         fields = ['clase_deck']
 
-        
+
+class UserRegistrationForm(UserCreationForm):
+    email = forms.EmailField()
+
+    class Meta:
+        model = User
+        fields = ['username', 'email', 'password1', 'password2']

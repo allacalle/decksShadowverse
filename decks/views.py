@@ -3,6 +3,14 @@ from .models import Deck, ShadowverseClass
 from .forms import DeckForm
 from django.contrib.auth.decorators import login_required
 from django.views.generic import ListView
+from django.contrib.auth.views import LoginView
+from django.urls import reverse_lazy
+from django.views.generic.edit import CreateView
+from .forms import UserRegistrationForm
+
+
+
+
 
 
 def pagina_inicio(request):
@@ -10,7 +18,7 @@ def pagina_inicio(request):
 
 
 def lista_decks(request):
-    decks = Deck.objects.all()
+    decks = Deck.objects.order_by('-fecha_publicacion')
     clases = ShadowverseClass.objects.all()
     print(clases)  # Agrega esta línea para verificar si las clases se están pasando correctamente
     return render(request, 'lista_decks.html', {'decks': decks, 'clases': clases})
@@ -61,3 +69,13 @@ class ListaDecksView(ListView):
     template_name = 'lista_decks.html'
     context_object_name = 'decks'  # Nombre de la variable de contexto
     ordering = ['-fecha_publicacion']  # Ordenar por fecha de publicación, los más nuevos primero
+
+
+class CustomLoginView(LoginView):
+    template_name = 'registration/login.html'  # Ruta a tu plantilla de inicio de sesión
+
+class UserRegistrationView(CreateView):
+    template_name = 'registration/register.html'  # Nombre de tu plantilla de registro
+    form_class = UserRegistrationForm
+    success_url = reverse_lazy('login')  # URL a la que se redirige después del registro exitoso
+ 

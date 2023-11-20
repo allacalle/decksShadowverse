@@ -233,4 +233,7 @@ body {
   margin-top: 10px; /* Margen superior para separar de otros elementos */
 }
 
+.welcome-message {
+  margin-right: 100px; /* Ajusta el margen izquierdo según tu preferencia */
+}
 

@@ -11,20 +11,23 @@
 </div>
 
 {% for deck in decks %}
-  <div class="deck-wrapper" data-clase="{{ deck.clase_deck }}">
-    <a href="{% url 'detalle_deck' deck.id %}" class="deck-item">
-      <h3>{{ deck.nombre }}</h3>
-      <p>{{ deck.descripcion }}</p>
+<div class="deck-wrapper" data-clase="{{ deck.clase_deck }}">
+  <a href="{% url 'detalle_deck' deck.id %}" class="deck-item">
+    <h3 class="deck-name">{{ deck.nombre }}</h3>
+    <p class="deck-description">{{ deck.descripcion }}</p>
+    <div class="deck-content">
       <img src="{{ deck.imagen.url }}" alt="{{ deck.nombre }}">
       <p class="publication-date">Fecha de Publicación: {{ deck.fecha_publicacion }}</p>
       <p>{{ deck.clase_deck }}</p>
-      
+    </div>
+    <div class="download-button">
       <!-- Botón de descarga estilizado con emoticono de disquete -->
       <a href="{{ deck.imagen.url }}" download="{{ deck.nombre }}.jpg" class="download-btn">
         <span class="emoji">&#128190;</span> Descargar Imagen
       </a>
-    </a>
-  </div>
+    </div>
+  </a>
+</div>
 {% endfor %}
 </div>
 
@@ -82,5 +85,13 @@ document.addEventListener('DOMContentLoaded', function() {
   .btn-class-lista-decks.selected {
     border: 2px solid #ffd700; /* Borde dorado para el botón seleccionado */
   }
+
+
+
+  .deck-name {
+    font-size: 24x; /* Tamaño de fuente más grande para el nombre */
+    text-align: center; /* Centra el nombre */
+  }
+
 </style>
 {% endblock %}
