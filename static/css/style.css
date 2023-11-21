@@ -237,3 +237,46 @@ body {
   margin-right: 100px; /* Ajusta el margen izquierdo según tu preferencia */
 }
 
+
+/* Agrega estos estilos a tu archivo style.css */
+.custom-login {
+  background-color: #010113; /* Fondo oscuro */
+  border: 2px solid #ffdb58; /* Borde amarillo */ 
+  border-radius: 10px; /* Bordes redondeados */
+  padding: 20px; /* Espaciado interior */
+  margin: 20px auto; /* Centrar en la página */
+  max-width: 300px; /* Ancho máximo del contenedor */
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5); /* Sombra */
+}
+
+/* Agrega estos estilos a tu archivo style.css */
+.custom-register {
+  background-color: #010113; /* Fondo oscuro */
+  border: 2px solid #ffdb58; /* Borde amarillo */
+  border-radius: 10px; /* Bordes redondeados */
+  padding: 30px; /* Espaciado interior */
+  margin: 20px auto; /* Centrar en la página */
+  max-width: 400px; /* Ancho máximo del contenedor */
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5); /* Sombra */
+}
+
+.custom-register h2 {
+  color: #fff; /* Color del título */
+  font-size: 32px;
+  text-align: center;
+}
+
+.custom-register button[type="submit"] {
+  background-color: #007bff; /* Color de fondo del botón (azul) */
+  color: #fff; /* Color del texto del botón (blanco) */
+  border: none; /* Sin bordes */
+  padding: 12px 24px; /* Espaciado interior del botón */
+  border-radius: 20px; /* Bordes redondeados */
+  font-weight: bold; /* Peso de la fuente */
+  text-decoration: none; /* Elimina la decoración de texto */
+  transition: background-color 0.3s ease; /* Transición de color de fondo */
+}
+
+.custom-register button[type="submit"]:hover {
+  background-color: #0056b3; /* Cambio de color al pasar el cursor sobre el botón (azul más oscuro) */
+}
