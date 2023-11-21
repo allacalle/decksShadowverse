@@ -2,7 +2,7 @@
 
 {% block content %}
 <div class="class-buttons">
-  <a href="?class=Todas" class="btn-class-lista-decks {% if not selected_class %}selected{% endif %}">Todas</a>
+  <a href="?class=Todas" class="btn-class-lista-decks {% if not selected_class %}selected{% endif %}" data-class="Todas">Todas</a>
   {% for clase in clases %}
     <a href="?class={{ clase.name_class }}" class="btn-class-lista-decks {% if selected_class == clase.name_class %}selected{% endif %}">
       <img src="{{ clase.icon.url }}" alt="{{ clase.name_class }}" />
@@ -49,39 +49,43 @@
 </div>
 
 <script>
-document.addEventListener('DOMContentLoaded', function() {
-  const classButtons = document.querySelectorAll('.btn-class-lista-decks');
-  const decks = document.querySelectorAll('.deck-wrapper');
-
-  classButtons.forEach(function(button) {
-    button.addEventListener('click', function() {
-      const selectedClass = this.getAttribute('data-class');
-      if (selectedClass === "Todas") {
-        decks.forEach(function(deck) {
-          deck.style.display = "block";
+  document.addEventListener('DOMContentLoaded', function() {
+    const classButtons = document.querySelectorAll('.btn-class-lista-decks');
+    const decks = document.querySelectorAll('.deck-wrapper');
+  
+    classButtons.forEach(function(button) {
+      button.addEventListener('click', function(event) {
+        const selectedClass = this.getAttribute('data-class');
+  
+        // Desmarca todos los botones primero
+        classButtons.forEach(function(btn) {
+          btn.classList.remove('selected');
         });
-      } else {
-        decks.forEach(function(deck) {
-          const claseMazo = deck.getAttribute('data-clase');
-          if (claseMazo === selectedClass) {
-            deck.style.display = "block";
-          } else {
-            deck.style.display = "none";
-          }
-        });
-      }
-
-      // Desmarca todos los botones
-      classButtons.forEach(function(btn) {
-        btn.classList.remove('selected');
+  
+        // Marca el botón seleccionado (excepto para "Todas")
+        this.classList.add('selected');
+  
+        // Aplica la lógica de mostrar/ocultar decks
+        if (selectedClass === "Todas") {
+          // Previene el comportamiento predeterminado del enlace
+          event.preventDefault();
+          // Recarga la página cuando se selecciona "Todas"
+          location.href = window.location.origin + window.location.pathname;
+        } else {
+          decks.forEach(function(deck) {
+            const claseMazo = deck.getAttribute('data-clase');
+            if (claseMazo === selectedClass) {
+              deck.style.display = "block";
+            } else {
+              deck.style.display = "none";
+            }
+          });
+        }
       });
-      
-      // Marca el botón seleccionado
-      this.classList.add('selected');
     });
   });
-});
 </script>
+
 
 <style>
   .btn-class-lista-decks {
