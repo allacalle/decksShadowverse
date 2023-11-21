@@ -7,24 +7,44 @@ from django.contrib.auth.views import LoginView
 from django.urls import reverse_lazy
 from django.views.generic.edit import CreateView
 from .forms import UserRegistrationForm
+from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
+from django.shortcuts import render
 
-
-
-
-
-
-def pagina_inicio(request):
-    return render(request, 'inicio.html')
 
 
 def lista_decks(request):
-    decks = Deck.objects.order_by('-fecha_publicacion')
+    # Obtener todos los decks (o filtrar según tu lógica)
+    all_decks = Deck.objects.order_by('-fecha_publicacion')
+
+    # Obtener la clase seleccionada (si hay alguna)
+    selected_class = request.GET.get('class')
+
+    # Filtrar decks por la clase seleccionada
+    if selected_class and selected_class != 'Todas':
+        all_decks = all_decks.filter(clase_deck__name_class=selected_class)
+
+    # Configurar la paginación con 5 decks por página
+    paginator = Paginator(all_decks, 5)
+    page = request.GET.get('page')
+
+    try:
+        decks = paginator.page(page)
+    except PageNotAnInteger:
+        # Si la página no es un número, mostrar la primera página
+        decks = paginator.page(1)
+    except EmptyPage:
+        # Si la página está fuera de rango, mostrar la última página
+        decks = paginator.page(paginator.num_pages)
+
     clases = ShadowverseClass.objects.all()
-    print(clases)  # Agrega esta línea para verificar si las clases se están pasando correctamente
-    return render(request, 'lista_decks.html', {'decks': decks, 'clases': clases})
 
+    context = {
+        'decks': decks,
+        'clases': clases,
+        'selected_class': selected_class,
+    }
 
-
+    return render(request, 'lista_decks.html', context)
 
 def detalle_deck(request, deck_id):
     deck = get_object_or_404(Deck, pk=deck_id)

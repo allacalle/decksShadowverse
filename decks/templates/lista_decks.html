@@ -2,11 +2,11 @@
 
 {% block content %}
 <div class="class-buttons">
-  <button type="button" class="btn-class-lista-decks" data-class="Todas">Todas</button>
+  <a href="?class=Todas" class="btn-class-lista-decks {% if not selected_class %}selected{% endif %}">Todas</a>
   {% for clase in clases %}
-    <button type="button" class="btn-class-lista-decks" data-class="{{ clase.name_class }}">
+    <a href="?class={{ clase.name_class }}" class="btn-class-lista-decks {% if selected_class == clase.name_class %}selected{% endif %}">
       <img src="{{ clase.icon.url }}" alt="{{ clase.name_class }}" />
-    </button>
+    </a>
   {% endfor %}
 </div>
 
@@ -29,6 +29,23 @@
   </a>
 </div>
 {% endfor %}
+
+<div class="pagination">
+  <span class="step-links">
+    {% if decks.has_previous %}
+      <a href="?page=1{% if selected_class %}&class={{ selected_class }}{% endif %}">&laquo; primera</a>
+      <a href="?page={{ decks.previous_page_number }}{% if selected_class %}&class={{ selected_class }}{% endif %}">anterior</a>
+    {% endif %}
+
+    <span class="current">
+      Página {{ decks.number }} de {{ decks.paginator.num_pages }}.
+    </span>
+
+    {% if decks.has_next %}
+      <a href="?page={{ decks.next_page_number }}{% if selected_class %}&class={{ selected_class }}{% endif %}">siguiente</a>
+      <a href="?page={{ decks.paginator.num_pages }}{% if selected_class %}&class={{ selected_class }}{% endif %}">última &raquo;</a>
+    {% endif %}
+  </span>
 </div>
 
 <script>
@@ -68,8 +85,8 @@ document.addEventListener('DOMContentLoaded', function() {
 
 <style>
   .btn-class-lista-decks {
-    width: 120px; /* Ancho deseado */
-    height: 60px; /* Alto deseado */
+    width: 120px;
+    height: 60px;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -78,20 +95,50 @@ document.addEventListener('DOMContentLoaded', function() {
     color: #fff; /* Color del texto (blanco) */
     border: none; /* Sin bordes */
     border-radius: 10px; /* Bordes redondeados */
-    margin-right: 10px; /* Margen derecho para separar botones */
+    margin-right: 10px;
     cursor: pointer;
   }
-
+  
   .btn-class-lista-decks.selected {
     border: 2px solid #ffd700; /* Borde dorado para el botón seleccionado */
   }
+  
 
+/* Agrega estos estilos a tu archivo CSS */
+.pagination {
+  display: flex;
+  justify-content: center;
+  list-style: none;
+  padding: 0;
+}
 
+.pagination li {
+  margin: 0 5px;
+}
 
-  .deck-name {
-    font-size: 24x; /* Tamaño de fuente más grande para el nombre */
-    text-align: center; /* Centra el nombre */
-  }
+/* Añade este estilo al final de tu archivo CSS */
+
+.pagination a {
+  text-decoration: none;
+  padding: 8px 12px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  color: #fff; /* Cambiado a blanco */
+  transition: background-color 0.3s;
+}
+
+.pagination a:hover {
+  background-color: #ddd;
+  color: #333; /* Cambiado a negro al pasar el ratón */
+}
+
+.pagination .current {
+  background-color: #007bff;
+  color: #fff;
+  border: 1px solid #007bff;
+}
+
 
 </style>
+
 {% endblock %}
