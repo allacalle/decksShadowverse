@@ -7,7 +7,7 @@ from django.contrib.auth.views import LoginView
 from django.urls import reverse_lazy
 from django.views.generic.edit import CreateView
 from .forms import UserRegistrationForm
-
+from django.core.paginator import Paginator
 
 
 
@@ -69,6 +69,12 @@ class ListaDecksView(ListView):
     template_name = 'lista_decks.html'
     context_object_name = 'decks'  # Nombre de la variable de contexto
     ordering = ['-fecha_publicacion']  # Ordenar por fecha de publicación, los más nuevos primero
+    paginate_by = 5  # Cantidad de mazos por página
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['clases'] = ShadowverseClass.objects.all()
+        return context
 
 
 class CustomLoginView(LoginView):
