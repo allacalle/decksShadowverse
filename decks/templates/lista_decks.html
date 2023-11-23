@@ -2,7 +2,7 @@
 
 {% block content %}
 <div class="class-buttons">
-  <a href="?class=Todas" class="btn-class-lista-decks {% if not selected_class %}selected{% endif %}" data-class="Todas">Todas</a>
+  <a href="?class=Todas" class="btn-class-lista-decks ">Todas</a>
   {% for clase in clases %}
     <a href="?class={{ clase.name_class }}" class="btn-class-lista-decks {% if selected_class == clase.name_class %}selected{% endif %}">
       <img src="{{ clase.icon.url }}" alt="{{ clase.name_class }}" />
@@ -11,7 +11,7 @@
 </div>
 
 {% for deck in decks %}
-<div class="deck-wrapper" data-clase="{{ deck.clase_deck }}">
+<div class="deck-wrapper" data-clase="{{ deck.clase_deck }}" style="transition: opacity 0.5s ease-in-out; opacity: 1;">
   <a href="{% url 'detalle_deck' deck.id %}" class="deck-item">
     <h3 class="deck-name">{{ deck.nombre }}</h3>
     <p class="deck-description">{{ deck.descripcion }}</p>
@@ -21,7 +21,6 @@
       <p>{{ deck.clase_deck }}</p>
     </div>
     <div class="download-button">
-      <!-- Botón de descarga estilizado con emoticono de disquete -->
       <a href="{{ deck.imagen.url }}" download="{{ deck.nombre }}.jpg" class="download-btn">
         <span class="emoji">&#128190;</span> Descargar Imagen
       </a>
@@ -48,30 +47,25 @@
   </span>
 </div>
 
+
+
 <script>
   document.addEventListener('DOMContentLoaded', function() {
     const classButtons = document.querySelectorAll('.btn-class-lista-decks');
     const decks = document.querySelectorAll('.deck-wrapper');
-  
+
     classButtons.forEach(function(button) {
       button.addEventListener('click', function(event) {
         const selectedClass = this.getAttribute('data-class');
-  
+
         // Desmarca todos los botones primero
         classButtons.forEach(function(btn) {
           btn.classList.remove('selected');
         });
-  
-        // Marca el botón seleccionado (excepto para "Todas")
+
         this.classList.add('selected');
-  
+
         // Aplica la lógica de mostrar/ocultar decks
-        if (selectedClass === "Todas") {
-          // Previene el comportamiento predeterminado del enlace
-          event.preventDefault();
-          // Recarga la página cuando se selecciona "Todas"
-          location.href = window.location.origin + window.location.pathname;
-        } else {
           decks.forEach(function(deck) {
             const claseMazo = deck.getAttribute('data-clase');
             if (claseMazo === selectedClass) {
@@ -88,58 +82,78 @@
 
 
 <style>
-  .btn-class-lista-decks {
-    width: 120px;
-    height: 60px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    background-color: #000; /* Fondo negro */
-    color: #fff; /* Color del texto (blanco) */
-    border: none; /* Sin bordes */
-    border-radius: 10px; /* Bordes redondeados */
-    margin-right: 10px;
-    cursor: pointer;
-  }
-  
-  .btn-class-lista-decks.selected {
-    border: 2px solid #ffd700; /* Borde dorado para el botón seleccionado */
-  }
-  
+/* Button styles */
+.btn-class-lista-decks {
+  width: 120px;
+  height: 60px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background-color: #000; /* Fondo negro */
+  color: #fff; /* Color del texto (blanco) */
+  border: none; /* Sin bordes */
+  border-radius: 10px; /* Bordes redondeados */
+  margin-right: 10px;
+  cursor: pointer;
+  text-decoration: none; /* Elimina el subrayado del enlace */
+  transition: background-color 0.2s ease-in-out; /* Añade una transición suave al cambiar el color de fondo */
+  outline: none; /* Elimina el contorno del botón */
+}
 
-/* Agrega estos estilos a tu archivo CSS */
+.btn-class-lista-decks:hover {
+  background-color: #333; /* Cambia el color de fondo al pasar el ratón */
+}
+
+.btn-class-lista-decks.selected {
+  border: 2px solid #ffd700; /* Borde dorado para el botón seleccionado */
+}
+
+/* Pagination styles */
 .pagination {
   display: flex;
   justify-content: center;
   list-style: none;
   padding: 0;
+  margin: 0; /* Añade margen cero para evitar espacios innecesarios */
 }
 
 .pagination li {
   margin: 0 5px;
 }
 
-/* Añade este estilo al final de tu archivo CSS */
-
 .pagination a {
-  text-decoration: none;
   padding: 8px 12px;
   border: 1px solid #ddd;
   border-radius: 5px;
-  color: #fff; /* Cambiado a blanco */
-  transition: background-color 0.3s;
+  color: #333; /* Cambia el color del texto a negro */
+  transition: background-color 0.2s ease-in-out; /* Añade una transición suave al cambiar el color de fondo */
 }
 
 .pagination a:hover {
-  background-color: #ddd;
-  color: #333; /* Cambiado a negro al pasar el ratón */
+  background-color: #eee; /* Cambia el color de fondo al pasar el ratón */
+  color: #000; /* Cambia el color del texto a negro al pasar el ratón */
 }
 
 .pagination .current {
   background-color: #007bff;
   color: #fff;
   border: 1px solid #007bff;
+}
+
+/* Deck wrapper styles */
+.deck-wrapper {
+  transition: opacity 0.5s ease-in-out;
+  opacity: 1;
+}
+
+.deck-wrapper.hidden {
+  opacity: 0;
+  pointer-events: none;
+  height: 0;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
 }
 
 
